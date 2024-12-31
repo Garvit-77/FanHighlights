@@ -1,0 +1,24 @@
+.preferences-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .preferences-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+  }
+  
+  .preferences-button:active {
+    transform: scale(1.05);
+  }
+  

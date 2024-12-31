@@ -1,21 +1,41 @@
-import { useState } from 'react'
-import './App.css'
-import Navbar from '../components/Navbar'
+import React, { useState } from "react";
+import Navbar from "./components/navbar";
+import TeamSelector from "./components/TeamSelector";
+import PlayerSelector from "./components/PlayerSelector";
+import PreferencesButton from "./components/PreferencesButton";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [selectedTeamId, setSelectedTeamId] = useState(null);
+  const [selectedTeams, setSelectedTeams] = useState([]);
+  const [selectedPlayers, setSelectedPlayers] = useState([]);
+
+  const handleTeamSelect = (teamId) => {
+    setSelectedTeamId(teamId);
+    if (!selectedTeams.includes(teamId)) {
+      setSelectedTeams((prev) => [...prev, teamId]);
+    }
+  };
+
+  const handlePlayerSelect = (players) => {
+    setSelectedPlayers(players);
+  };
 
   return (
-    <>
-      <Navbar/>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
-    </>
-  )
-}
+    <div>
+      <Navbar />
+      <TeamSelector onSelectTeam={handleTeamSelect} />
+      {selectedTeamId && (
+        <PlayerSelector
+          teamId={selectedTeamId}
+          onSelectPlayers={handlePlayerSelect}
+        />
+      )}
+      <PreferencesButton
+        selectedTeams={selectedTeams}
+        selectedPlayers={selectedPlayers}
+      />
+    </div>
+  );
+};
 
-export default App
+export default App;
